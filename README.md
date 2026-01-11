@@ -1,6 +1,7 @@
 # 42_EXAM SIMULATION 
 
-⚠️ Important Notice
+#⚠️ Important Notice
+
 Some exercises have been intentionally removed from this fork to better reflect current exam expectations and to improve overall quality and maintenance.
 This does not affect the core functionality of the simulator or its usefulness for exam preparation.
 
