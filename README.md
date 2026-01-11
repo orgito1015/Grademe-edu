@@ -44,7 +44,7 @@ source <(curl https://raw.githubusercontent.com/Seraph919/Grademe-edu/main/insta
 - [ ] Detects infinite loop across all Grademe  
 - [ ] Detects leaks in all exercises
 
-## 📚 Exercise Descriptions
+## Exercise Descriptions
 
 Every exercise in this simulator now includes a comprehensive README.md file with:
 - Clear description of what the program must do
@@ -77,7 +77,7 @@ You can contribute by adding a new exercise or improving the program.
 
 **gradenow**: Correction without wait time  
 
-# 👮‍♀️ GDPR:  
+#  GDPR:  
 NO personal information is collected during the exam.
 
 # Disclaimer:
