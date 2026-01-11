@@ -5,8 +5,6 @@
 Some exercises have been intentionally removed from this fork to better reflect current exam expectations and to improve overall quality and maintenance.
 This does not affect the core functionality of the simulator or its usefulness for exam preparation.
 
-
-### All 42 exams to practice.  
 #### Disclaimer: This project is a "fork" of the 42_exam from [JCluzet](https://github.com/JCluzet), all credits for this project go to them. This fork aims to provide knowledge freely and open source.
 
 # Requirements
