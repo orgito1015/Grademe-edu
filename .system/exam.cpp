@@ -45,6 +45,72 @@ std::string exam::get_path(void)
     return (path_exam);
 }
 
+// ==> Display exercise description from README.md
+void exam::display_exercise_description(void)
+{
+    std::cout << "\n" << BOLD << CYAN << "================================================================================" << RESET << std::endl;
+    std::cout << BOLD << LIME << "EXERCISE: " << current_ex->get_name() << RESET << std::endl;
+    std::cout << BOLD << CYAN << "================================================================================" << RESET << "\n" << std::endl;
+    
+    // Try to read from README.md first
+    std::string readme_path = get_path() + "README.md";
+    std::ifstream readme_file(readme_path);
+    
+    if (readme_file.good())
+    {
+        std::string line;
+        
+        // Skip the first line if it's a markdown title (starts with #)
+        if (std::getline(readme_file, line))
+        {
+            // If the first line is not a title, display it
+            if (line.empty() || line[0] != '#')
+                std::cout << line << std::endl;
+            
+            // Display all remaining lines
+            while (std::getline(readme_file, line))
+            {
+                std::cout << line << std::endl;
+            }
+        }
+        readme_file.close();
+    }
+    else
+    {
+        // Fallback: Try to read from subject.en.txt if it exists
+        std::string subject_path = get_path() + "attachment/subject.en.txt";
+        std::ifstream subject_file(subject_path);
+        
+        if (subject_file.good())
+        {
+            std::string line;
+            while (std::getline(subject_file, line))
+            {
+                std::cout << line << std::endl;
+            }
+            subject_file.close();
+        }
+        else
+        {
+            // If neither file exists, display a fallback message
+            std::cout << YELLOW << "⚠️  Warning: No description file found for this exercise." << RESET << std::endl;
+            std::cout << "Expected files: README.md or attachment/subject.en.txt" << std::endl;
+            std::cout << "Please check the exercise directory: " << get_path() << std::endl;
+        }
+    }
+    
+    std::cout << "\n" << BOLD << CYAN << "================================================================================" << RESET << std::endl;
+    std::cout << YELLOW << "Press Enter to start the timer and begin working on the exercise..." << RESET << std::endl;
+    std::cout << BOLD << CYAN << "================================================================================" << RESET << "\n" << std::endl;
+    
+    std::string enter;
+    if (!std::getline(std::cin, enter))
+    {
+        // Handle input stream errors
+        std::cin.clear();
+    }
+}
+
 // ==> Set max level for an exam
 void exam::set_max_lvl(void)
 {

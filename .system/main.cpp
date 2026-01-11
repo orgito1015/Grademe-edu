@@ -188,6 +188,7 @@ bool exam::start_new_ex(void)
         exercise ex = *randomize_exercise(list_ex_lvl, setting_dse);
         current_ex = new exercise(ex);
         prepare_current_ex();
+        display_exercise_description();
         store_data();
     }
     if (vip)
