@@ -40,8 +40,32 @@ source <(curl https://raw.githubusercontent.com/Seraph919/Grademe-edu/main/insta
 - [x] Automatic correction (even without internet)  
 - [x] Traceback available  
 - [x] Detects infinite loop in your program (ExamRank02)  
+- [x] **Clear exercise descriptions** for all 138 exercises
 - [ ] Detects infinite loop across all Grademe  
-- [ ] Detects leaks in all exercises  
+- [ ] Detects leaks in all exercises
+
+## 📚 Exercise Descriptions
+
+Every exercise in this simulator now includes a comprehensive README.md file with:
+- Clear description of what the program must do
+- Expected input/output specifications
+- Allowed functions and constraints
+- Example usage demonstrating expected behavior
+
+You can find the description for any exercise in its directory:
+```
+.subjects/PISCINE_PART/exam_XX/[level]/[exercise_name]/README.md
+.subjects/STUD_PART/exam_XX/[level]/[exercise_name]/README.md
+```
+
+For example:
+```bash
+# View description for aff_a exercise
+cat .subjects/PISCINE_PART/exam_01/0/aff_a/README.md
+
+# View description for ft_printf exercise
+cat .subjects/STUD_PART/exam_03/0/ft_printf/README.md
+```  
 
 # 👓 CHEAT code:  
 
