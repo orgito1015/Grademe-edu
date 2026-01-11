@@ -1,6 +1,6 @@
 # ft_list_size
 
-**Expected files:** `ft_list_size.c, ft_list.h`
+**Expected files:** `ft_list_size.c`
 
 ---
 
@@ -11,8 +11,7 @@ It must be declared as follows:
 
 int	ft_list_size(t_list *begin_list);
 
-You must use the following structure, and turn it in as a file called
-ft_list.h:
+You must use the following structure in your program ft_list_size.c :
 
 typedef struct    s_list
 {
