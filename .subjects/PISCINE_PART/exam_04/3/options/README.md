@@ -24,7 +24,7 @@ int, and should be stocked like this :
 Launch the program without arguments or with the '-h' flag activated must print
 an usage on the standard output, as shown in the following examples.
 
-A wrong option must print "Invalid Option" followd by a newline.
+A wrong option must print "Invalid Option" followed by a newline.
 
 Examples :
 $>./options

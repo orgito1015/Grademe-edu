@@ -17,7 +17,7 @@ A "word" is defined as a part of a string delimited either by spaces/tabs, or
 by the start/end of the string. If a word only has one letter, it must be
 capitalized.
 
-If there are no arguments, the progam must display \n.
+If there are no arguments, the program must display \n.
 
 Example:
 

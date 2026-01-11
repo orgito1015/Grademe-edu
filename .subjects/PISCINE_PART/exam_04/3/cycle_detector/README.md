@@ -14,7 +14,7 @@ as argument, and check if the given linked list contains no cycles.
 A cycle is defined when you go at least twice through the same link, when you
 travel inside a linked list.
 
-This function should returnw 1 if it detects a cycle inside the given linked
+This function should returns 1 if it detects a cycle inside the given linked
 list, otherwise it returns 0.
 
 This function should be prototyped like this:
