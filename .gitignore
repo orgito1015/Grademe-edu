@@ -1,0 +1,36 @@
+# Compiled binaries
+.system/a.out
+.system/a.out.dSYM
+a.out
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+
+# Exercise working directories
+rendu/
+subjects/
+.system/grading/
+
+# Runtime files
+.system/exam_token/
+.system/acceptCGV
+.system/readline_ok
+.system/.devmake.err
+.system/unique_id.txt
+.system/.env
+.system/vip_list
+
+# Success tracking
+success/
+
+# macOS
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

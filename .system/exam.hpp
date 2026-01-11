@@ -78,6 +78,7 @@ public:
     int change_ex(void);
     void exam_prompt(void);
     bool prepare_current_ex(void);
+    void display_exercise_description(void);
     bool clean_all(void);
     void restore_data(void);
     bool start_new_ex(void);
