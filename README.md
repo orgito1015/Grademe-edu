@@ -24,11 +24,11 @@ sudo dnf update && sudo dnf install readline-devel ncurses-devel
 ```
 # Start  
 ```
-git clone https://github.com/Seraph919/Grademe-edu && cd Grademe-edu && make && make
+git clone https://github.com/orgito1015/Grademe-edu && cd Grademe-edu && make && make
 ```
 Or  
 ```
-source <(curl https://raw.githubusercontent.com/Seraph919/Grademe-edu/main/install.sh)
+source <(curl https://raw.githubusercontent.com/orgito1015/Grademe-edu/main/install.sh)
 ```
 
 ## Practice for the 42 exams 🏊‍♂️
