@@ -59,12 +59,15 @@ void exam::display_exercise_description(void)
     if (readme_file.good())
     {
         std::string line;
-        bool in_description = false;
         
-        // Skip the title line (# exercise_name)
+        // Skip the first line if it's a markdown title (starts with #)
         if (std::getline(readme_file, line))
         {
-            // Start reading from the next line
+            // If the first line is not a title, display it
+            if (line.empty() || line[0] != '#')
+                std::cout << line << std::endl;
+            
+            // Display all remaining lines
             while (std::getline(readme_file, line))
             {
                 std::cout << line << std::endl;
@@ -101,7 +104,11 @@ void exam::display_exercise_description(void)
     std::cout << BOLD << CYAN << "================================================================================" << RESET << "\n" << std::endl;
     
     std::string enter;
-    std::getline(std::cin, enter);
+    if (!std::getline(std::cin, enter))
+    {
+        // Handle input stream errors
+        std::cin.clear();
+    }
 }
 
 // ==> Set max level for an exam
