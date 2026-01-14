@@ -188,13 +188,22 @@ bool exam::start_new_ex(void)
         exercise ex = *randomize_exercise(list_ex_lvl, setting_dse);
         current_ex = new exercise(ex);
         prepare_current_ex();
+        // Show rotation animation first, then exercise description
+        if (vip)
+            infovip();
+        else
+            info();
         display_exercise_description();
         store_data();
     }
-    if (vip)
-        infovip();
     else
-        info();
+    {
+        // For restored sessions, just show the info without rotation
+        if (vip)
+            infovip();
+        else
+            info();
+    }
     exam_prompt();
     return (true);
 }
