@@ -188,13 +188,18 @@ bool exam::start_new_ex(void)
         exercise ex = *randomize_exercise(list_ex_lvl, setting_dse);
         current_ex = new exercise(ex);
         prepare_current_ex();
-        display_exercise_description();
-        store_data();
     }
+    // Show exercise rotation/status (rotation only shows for new exercises)
     if (vip)
         infovip();
     else
         info();
+    // Display detailed description only for new exercises
+    if (!backup)
+    {
+        display_exercise_description();
+        store_data();
+    }
     exam_prompt();
     return (true);
 }
