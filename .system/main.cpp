@@ -135,16 +135,16 @@ void exam::exam_prompt(void)
             std::cout << "The VIP status does not limit the program's core features. It simply\n"
                       << "offers two small additional options for those who wish to support the project.\n" << std::endl;
             std::cout << "\e[1mThank you for your support, and happy coding! ♥︎\e[0m\n" << std::endl;
-            std::cout << "Press any key to open the sponsor page..." << std::endl;
+            std::cout << "Press any key to visit my GitHub profile..." << std::endl;
             std::cin.get();
 
 
             if (is_linux)
-                std::system("xdg-open http://sponsor.grademe.fr");
+                std::system("xdg-open https://github.com/orgito1015");
             else
-                std::system("open http://sponsor.grademe.fr");
+                std::system("open https://github.com/orgito1015");
             system("clear");
-            std::cout << "Thanks a lot ♥︎" << std::endl << std::endl;
+            std::cout << "Thanks a lot! Don't forget to follow me on GitHub ♥︎" << std::endl << std::endl;
             if (vip)
                 infovip();
             else

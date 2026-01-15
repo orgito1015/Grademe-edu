@@ -97,7 +97,7 @@ void exam::end_exam()
 
     // show file .system/qrcode
     std::cout << std::endl
-              << "Opening Github Sponsor Page? (y/n)" << std::endl;
+              << "Visit my GitHub profile? (y/n)" << std::endl;
     char c;
     std::cin >> c;
     if (c == 'y' || c == 'Y')
@@ -108,9 +108,9 @@ void exam::end_exam()
         is_linux = 1;
 #endif
         if (is_linux)
-            system("xdg-open https://github.com/sponsors/JCluzet");
+            system("xdg-open https://github.com/orgito1015");
         else
-            system("open https://github.com/sponsors/JCluzet");
+            system("open https://github.com/orgito1015");
         system("cat .system/qrcodesponsor");
     }
     std::cout << WHITE << BOLD << "Thanks for studying with us " << LIME << BOLD << username << WHITE << BOLD << " ❤️" << std::endl;
