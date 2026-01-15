@@ -43,7 +43,7 @@ void exam::exam_help()
 {
     std::cout << "Commands:" << std::endl;
     std::cout << LIME << "    help:" << RESET << " display this help" << std::endl;
-    std::cout << LIME << "    sponsor" << RESET << " Visit Sponsor Page to become VIP" << std::endl;
+    std::cout << LIME << "    sponsor" << RESET << " Visit GitHub Profile and Follow Me!" << std::endl;
     std::cout << LIME << "    settings: " << RESET << "display settings menu" << std::endl;
     std::cout << LIME << "    status:" << RESET << " display information about the exam" << std::endl;
     std::cout << LIME << "    finish:" << RESET << " exit the exam" << std::endl;
