@@ -97,7 +97,7 @@ void exam::end_exam()
 
     // show file .system/qrcode
     std::cout << std::endl
-              << "Opening GitHub Profile? Follow me on GitHub! (y/n)" << std::endl;
+              << "Visit my GitHub profile? (y/n)" << std::endl;
     char c;
     std::cin >> c;
     if (c == 'y' || c == 'Y')
