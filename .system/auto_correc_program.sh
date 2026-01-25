@@ -39,7 +39,7 @@ do
     if [ $i -eq 5 ] || [ $i -eq 10 ] || [ $i -eq 15 ] || [ $i -eq 19 ]; then
         echo "waiting..."
     fi
-    if ! ps -p $PID > /dev/null
+    if ! ps -p $PID > /dev/null 2>&1
     then
         timeout=0
         break
