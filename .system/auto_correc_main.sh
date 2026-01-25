@@ -46,7 +46,14 @@ done
 # Kill the process if it's still running (timeout occurred)
 if [ $timeout -eq 1 ] && ps -p $PID > /dev/null 2>&1
 then
-    kill $PID 2>/dev/null
+    # Try graceful termination first
+    kill -TERM $PID 2>/dev/null
+    sleep 1
+    # Force kill if still running
+    if ps -p $PID > /dev/null 2>&1
+    then
+        kill -KILL $PID 2>/dev/null
+    fi
     wait $PID 2>/dev/null
 fi
 
