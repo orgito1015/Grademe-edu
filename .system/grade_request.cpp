@@ -202,23 +202,8 @@ void exam::grade_request(bool i)
     {
         std::cout << RED << ">>>>>>>>>> FAILURE <<<<<<<<<<" << RESET << std::endl;
         sleep(1);
-        std::cout << "You have failed the assignment." << std::endl;
-
-        // if there is a traceback file, create a folder traces and copy the file to it with the good name
-        if (file_exists("traceback"))
-        {
-            system("mkdir -p traces");
-            std::string trace_name = std::to_string(level) + "-" + std::to_string(current_ex->get_assignement()) + "_" + current_ex->get_name() + ".trace";
-            std::string cmd_system_call = "mv traceback traces/" + trace_name;
-            system(cmd_system_call.c_str());
-            std::cout << "Trace saved to " << LIME << current_path() << "/traces/" << trace_name << RESET << std::endl
-                      << std::endl;
-        }
-        else
-        {
-            std::cout << "No traceback found." << std::endl
-                      << std::endl;
-        }
+        std::cout << "You have failed the assignment." << std::endl
+                  << std::endl;
         fail_ex();
         std::cout << "(Press enter to continue...)" << std::endl;
         std::string input;

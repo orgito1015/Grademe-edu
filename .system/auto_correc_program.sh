@@ -17,10 +17,6 @@ FILE="../../rendu/$2/$1"
 tmp=""
 timeout=1
 
-if [ -e .system/grading/traceback ];then
-    rm .system/grading/traceback;
-fi
-
 cd .system/grading
 gcc -o source "$1"
 ./source "${@:3}" | cat -e > sourcexam       #TESTING
@@ -53,29 +49,32 @@ done
 DIFF=$(diff sourcexam finalexam)
 if [ "$DIFF" != "" ]
 then
-        echo "----------------8<-------------[ START TEST " >> traceback
-        printf "        💻 TEST\n./a.out " >> traceback
+        echo ""
+        echo "----------------8<-------------[ START TEST ]"
+        printf "        💻 TEST\n./a.out "
         # print all the arguments, begin by the 3rd
         for i in "${@:3}"
         do
-            printf "\"$i\" " >> traceback
+            printf "\"$i\" "
         done
-        printf "\n        🔎 YOUR OUTPUT:\n" >> traceback
-        cat finalexam >> traceback
+        printf "\n"
         if [ $timeout -eq 1 ]
         then
-        printf "   ❌ TIMEOUT\n" >> traceback
+            printf "   ❌ TIMEOUT\n"
 		elif [ -e final ]
 		then
-        printf "        🗝 EXPECTED OUTPUT:\n" >> traceback
-		cat sourcexam >> traceback
+            printf "        🔎 YOUR OUTPUT:\n"
+            cat finalexam
+            printf "        🗝 EXPECTED OUTPUT:\n"
+            cat sourcexam
 		else
-        printf "\n";
-        echo "$(cat .dev)" >> traceback
-        rm .dev
-		printf "\n        ❌ COMPILATION ERROR\n" >> traceback
+            printf "\n"
+            echo "$(cat .dev)"
+            rm .dev
+            printf "\n        ❌ COMPILATION ERROR\n"
 		fi
-        echo "----------------8<------------- END TEST ]" >> traceback
+        echo "----------------8<------------- END TEST ]"
+        echo ""
 fi
 {
 rm final
