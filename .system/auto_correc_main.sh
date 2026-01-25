@@ -43,6 +43,13 @@ do
     fi
 done
 
+# Kill the process if it's still running (timeout occurred)
+if [ $timeout -eq 1 ] && ps -p $PID > /dev/null 2>&1
+then
+    kill $PID 2>/dev/null
+    wait $PID 2>/dev/null
+fi
+
 DIFF=$(diff sourcexam finalexam)
 #if diff is not empty, then there is a difference, or if timeout is 1
 if [ "$DIFF" != "" ] || [ $timeout -eq 1 ]
