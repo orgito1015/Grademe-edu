@@ -69,7 +69,7 @@ then
             cat sourcexam
 		else
             printf "\n"
-            echo "$(cat .dev)"
+            cat .dev
             rm .dev
             printf "\n        ❌ COMPILATION ERROR\n"
 		fi
