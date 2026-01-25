@@ -47,6 +47,31 @@ bool exam::prepare_current_ex(void)
     system("mkdir rendu 2> /dev/null");
     system("mkdir subjects 2> /dev/null");
     system("mkdir .system/grading 2> /dev/null");
+    
+    // create exercise-specific folder in rendu
+    // Validate exercise name to prevent shell injection
+    std::string ex_name = current_ex->get_name();
+    bool is_safe = true;
+    for (size_t i = 0; i < ex_name.length(); i++)
+    {
+        char c = ex_name[i];
+        // Only allow alphanumeric, underscore, hyphen, and dot
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || 
+              (c >= '0' && c <= '9') || c == '_' || c == '-' || c == '.'))
+        {
+            is_safe = false;
+            break;
+        }
+    }
+    if (is_safe && !ex_name.empty())
+    {
+        std::string exercise_folder = "mkdir -p rendu/" + ex_name;
+        system(exercise_folder.c_str());
+    }
+    else
+    {
+        std::cout << "Warning: Exercise name contains invalid characters, skipping folder creation" << std::endl;
+    }
 
     // copy all the files in the current get_path() + attachment/* to the subjects directory
     std::string cmd_system_call = "cp -r " + get_path() + "/attachment/*" + " subjects/";
