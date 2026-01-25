@@ -54,7 +54,7 @@ then
     then
         kill -KILL $PID 2>/dev/null
     fi
-    wait $PID 2>/dev/null
+    wait $PID 2>/dev/null || true
 fi
 
 DIFF=$(diff sourcexam finalexam)
