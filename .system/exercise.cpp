@@ -123,15 +123,13 @@ exercise *randomize_exercise(std::map<int, exercise> list, bool remove_success)
         std::cout << "Then relaunch 42_EXAM and recover your exam" << std::endl;
         exit(0);
     }
-    bool dosrandom = true;
-    // if list contain rostring, remove it
-    for (std::map<int, exercise>::iterator it = list.begin(); it != list.end(); it++)
+    // If list contains "rostring", always pick it directly
+    for (std::map<int, exercise>::iterator jt = list.begin(); jt != list.end(); jt++)
     {
-        if (it->second.get_name() == "rostring")
-            dosrandom = false;
+        if (jt->second.get_name() == "rostring")
+            return (&jt->second);
     }
-    if (dosrandom)
-        srand(time(NULL));
+    srand(time(NULL));
     int random = rand() % list.size();
     for (int i = 0; i < random; i++)
         it++;

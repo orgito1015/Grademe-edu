@@ -56,8 +56,6 @@ void exam::restore_data(void)
         std::cout << "Error: can't open backup" << std::endl;
     }
 
-    file.close();
-
     if (backup.end_time > time(0))
     {
         system("clear");

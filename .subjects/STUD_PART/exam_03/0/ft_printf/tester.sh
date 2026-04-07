@@ -19,7 +19,7 @@ cd ../../rendu
 gcc -Wall -Wextra -Werror  -o final $ASSIGN $MAIN1
 }  &>../.system/grading/traceback
 {
-./final | cat -e > finalexam        #TESTING
+timeout 20 ./final | cat -e > finalexam        #TESTING
 mv finalexam ../.system/grading/
 rm final
 }  &>/dev/null

@@ -176,7 +176,8 @@ void connexion(void)
     std::cout << BOLD << "login:" << RESET;
     fflush(stdout);
     usleep(600000);
-    std::string login = getenv("USER");
+    const char *user_env = getenv("USER");
+    std::string login = (user_env != NULL) ? user_env : "user";
     for (int i = 0; i < login.size(); i++)
     {
         usleep(100000);

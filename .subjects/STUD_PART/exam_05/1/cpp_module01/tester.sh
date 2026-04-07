@@ -25,7 +25,7 @@ rm -f cpp_module01/main.cpp
 # 	exit 1
 # fi
 {
-./final | cat -e > finalexam        #TESTING
+timeout 20 ./final | cat -e > finalexam        #TESTING
 mv finalexam ../.system/grading/
 rm final
 }  &>/dev/null

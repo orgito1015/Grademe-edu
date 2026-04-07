@@ -79,10 +79,45 @@ fi
 
 # check if there is connection to the internet, else do git pull for maj
 
+check_package() {
+    if ! command -v "$1" &>/dev/null; then
+        return 1
+    fi
+}
+
+# Vérification de clang
+if ! check_package "clang"; then
+    echo "Le compilateur clang n'est pas installé sur votre système."
+    echo "Veuillez l'installer pour continuer."
+    exit 1
+fi
+
+# Vérification de clang++
+if ! check_package "clang++"; then
+    echo "Le compilateur clang++ n'est pas installé sur votre système."
+    echo "Veuillez l'installer pour continuer."
+    exit 1
+fi
+
+# Vérification de gcc
+if ! check_package "gcc"; then
+    echo "Le compilateur gcc n'est pas installé sur votre système."
+    echo "Veuillez l'installer pour continuer."
+    exit 1
+fi
+
+# Vérification de g++
+if ! check_package "g++"; then
+    echo "Le compilateur g++ n'est pas installé sur votre système."
+    echo "Veuillez l'installer pour continuer."
+    exit 1
+fi
+
 # Check if readline is installed, if not, install it
 g++ .system/checkreadline.cpp -o .system/readline_ok 2>.system/.devmake.err &
+READLINE_PID=$!
 
-if [ ! -f .system/readline_ok ]; then
+while [ -d /proc/$READLINE_PID ]; do
     for i in "${spin[@]}"; do
         echo -ne "$LINE_UP$WHITE$i$WHITE$BOLD Checking readline library\n"
         for i in {1..29}; do
@@ -90,12 +125,12 @@ if [ ! -f .system/readline_ok ]; then
         done
         sleep 0.1
     done
-fi
+done
 
-printf "$LINE_UP$CLEAR_LINE$GREEN$BOLD"
-echo -ne "✔$RESET Checking readline library$WHITE$BOLD\n\n"
-
-if [ ! -f .system/readline_ok ]; then
+if [ -f .system/readline_ok ]; then
+    printf "$LINE_UP$CLEAR_LINE$GREEN$BOLD"
+    echo -ne "✔$RESET Checking readline library$WHITE$BOLD\n\n"
+else
     # clear
     printf "$LINE_UP$CLEAR_LINE$RED"
     printf "$LINE_UP$CLEAR_LINE$RED"
@@ -200,40 +235,6 @@ while [ ! -f .system/a.out ]; do
         done
     done
 done
-
-check_package() {
-    if ! command -v "$1" &>/dev/null; then
-        return 1
-    fi
-}
-
-# Vérification de clang
-if ! check_package "clang"; then
-    echo "Le compilateur clang n'est pas installé sur votre système."
-    echo "Veuillez l'installer pour continuer."
-    exit 1
-fi
-
-# Vérification de clang++
-if ! check_package "clang++"; then
-    echo "Le compilateur clang++ n'est pas installé sur votre système."
-    echo "Veuillez l'installer pour continuer."
-    exit 1
-fi
-
-# Vérification de gcc
-if ! check_package "gcc"; then
-    echo "Le compilateur gcc n'est pas installé sur votre système."
-    echo "Veuillez l'installer pour continuer."
-    exit 1
-fi
-
-# Vérification de g++
-if ! check_package "g++"; then
-    echo "Le compilateur g++ n'est pas installé sur votre système."
-    echo "Veuillez l'installer pour continuer."
-    exit 1
-fi
 
 printf "$LINE_UP$CLEAR_LINE$GREEN$BOLD"
 echo -ne "✔$RESET Compilation of$BOLD$MANGENTA 42_EXAM $RESET\n"

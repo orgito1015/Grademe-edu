@@ -65,12 +65,11 @@ void exam::exam_prompt(void)
             std::cout << "All your progress will be " << RED << "lost" << RESET << "." << std::endl;
             std::cout << "Type " << LIME << BOLD << "yes" << RESET << " to confirm." << std::endl;
             // read input
-            std::string input;
-            std::getline(std::cin, input);
-            if (input == "yes")
+            std::string confirm;
+            std::getline(std::cin, confirm);
+            if (confirm == "yes")
             {
-                if (std::ifstream(".system/exam_token/actuel_token.txt"))
-                    remove(".system/exam_token/actuel_token.txt");
+                remove(".system/exam_token/current_token.txt");
                 exit(0);
             }
             else
@@ -170,8 +169,6 @@ void exam::exam_prompt(void)
         {
             grade_request(1);
         }
-        else if (input == "")
-            std::cout << REMOVE_LINE;
         else if (input != "")
             std::cout << "           **Unknown command**     type " << LIME << "help" << RESET << " for more help" << std::endl;
         // info();

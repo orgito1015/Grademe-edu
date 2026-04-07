@@ -126,6 +126,8 @@ void exam::set_max_lvl(void)
             level_max = 3;
         else if (exam_number == 6)
             level_max = 1;
+        else
+            level_max = 1;
     }
     else
         level_max = 8;
@@ -323,7 +325,31 @@ exam &exam::operator=(exam const &src)
     return (*this);
 }
 
-exam::exam(exam const &src) {}
+exam::exam(exam const &src)
+{
+    this->exam_grade = src.exam_grade;
+    this->level = src.level;
+    this->level_max = src.level_max;
+    this->failures = src.failures;
+    this->student = src.student;
+    this->reelmode = src.reelmode;
+    this->waiting_time = src.waiting_time;
+    this->level_per_ex = src.level_per_ex;
+    this->level_per_ex_save = src.level_per_ex_save;
+    this->exam_number = src.exam_number;
+    this->start_time = src.start_time;
+    this->end_time = src.end_time;
+    this->time_max = src.time_max;
+    this->current_ex = src.current_ex;
+    this->backup = src.backup;
+    this->using_cheatcode = src.using_cheatcode;
+    this->vip = src.vip;
+    this->changex = src.changex;
+    this->username = src.username;
+    this->setting_dse = src.setting_dse;
+    this->setting_dcc = src.setting_dcc;
+    this->setting_an = src.setting_an;
+}
 exam::~exam(void) {}
 
 void exam::up_lvl(void)

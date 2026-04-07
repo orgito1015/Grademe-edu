@@ -17,7 +17,7 @@ FILE="../../rendu/$2/$1"
 tmp=""
 timeout=1
 
-cd .system/grading
+cd .system/grading || exit
 gcc -o source "$1"
 ./source "${@:3}" | cat -e > sourcexam       #TESTING
 rm -f source
@@ -61,7 +61,7 @@ then
 fi
 
 DIFF=$(diff sourcexam finalexam)
-if [ "$DIFF" != "" ]
+if [ "$DIFF" != "" ] || [ $timeout -eq 1 ]
 then
         touch traceback
         echo ""

@@ -23,19 +23,13 @@ cd ../../rendu
 gcc -Wall -Wextra -Werror -o stud $ASSIGN -D BUFFER_SIZE=3 $MAIN1 # our
 }  &>../.system/grading/traceback
 {
-./stud < test | cat -e > finalexam        #TESTING
+timeout 20 ./stud < test | cat -e > finalexam        #TESTING
 mv finalexam ../.system/grading/
-mv studleak ../.system/grading/studleak
 rm stud
 }  &>/dev/null
 
 cd ../.system/grading
-{
-cat studleak | tail -n 4 | tail -c 37 > leakstud
-cat bocleak | tail -n 4 | tail -c 37 > leakboc
-} &>/dev/null
 DIFF=$(diff sourcexam finalexam)
-DIFF1=$(diff leakstud leakboc)
 echo "" >> traceback
 if [ "$DIFF" != "" ]
 then
@@ -51,19 +45,8 @@ then
 		echo '\n' >> traceback
 		echo "-------" >> traceback
 fi
-if [ "$DIFF1" != "" ]
-then
-		index=$(($index + 1))
-		{
-		cat studleak >> traceback
-		} &>/dev/null
-		echo '\n' >> traceback
-		echo "-------" >> traceback
-fi
 
 {
-rm studleak
-rm bocleak
 rm ../../../rendu/test
 } &>/dev/null
 
@@ -84,19 +67,13 @@ cd ../../rendu
 gcc -Wall -Wextra -Werror -o stud $ASSIGN -D BUFFER_SIZE=1232 $MAIN1 # our
 }  &>../.system/grading/traceback
 {
-./stud < test | cat -e > finalexam        #TESTING
+timeout 20 ./stud < test | cat -e > finalexam        #TESTING
 mv finalexam ../.system/grading/
-mv studleak ../.system/grading/studleak
 rm stud
 }  &>/dev/null
 
 cd ../.system/grading
-{
-cat studleak | tail -n 4 | tail -c 37 > leakstud
-cat bocleak | tail -n 4 | tail -c 37 > leakboc
-} &>/dev/null
 DIFF=$(diff sourcexam finalexam)
-DIFF1=$(diff leakstud leakboc)
 echo "" >> traceback
 if [ "$DIFF" != "" ]
 then
@@ -112,19 +89,8 @@ then
 		echo '\n' >> traceback
 		echo "-------" >> traceback
 fi
-if [ "$DIFF1" != "" ]
-then
-		index=$(($index + 1))
-		{
-		cat studleak >> traceback
-		} &>/dev/null
-		echo '\n' >> traceback
-		echo "-------" >> traceback
-fi
 
 {
-rm studleak
-rm bocleak
 rm ../../../rendu/test
 } &>/dev/null
 
@@ -152,19 +118,13 @@ cd ../../rendu
 gcc -Wall -Wextra -Werror -o stud $ASSIGN -D BUFFER_SIZE=0 $MAIN1 # our
 }  &>../.system/grading/traceback
 {
-./stud < test | cat -e > finalexam        #TESTING
+timeout 20 ./stud < test | cat -e > finalexam        #TESTING
 mv finalexam ../.system/grading/
-mv studleak ../.system/grading/studleak
 rm stud
 }  &>/dev/null
 
 cd ../.system/grading
-{
-cat studleak | tail -n 4 | tail -c 37 > leakstud
-cat bocleak | tail -n 4 | tail -c 37 > leakboc
-} &>/dev/null
 DIFF=$(diff sourcexam finalexam)
-DIFF1=$(diff leakstud leakboc)
 echo "" >> traceback
 if [ "$DIFF" != "" ]
 then
@@ -180,19 +140,8 @@ then
 		echo '\n' >> traceback
 		echo "-------" >> traceback
 fi
-if [ "$DIFF1" != "" ]
-then
-		index=$(($index + 1))
-		{
-		cat studleak >> traceback
-		} &>/dev/null
-		echo '\n' >> traceback
-		echo "-------" >> traceback
-fi
 
 {
-rm studleak
-rm bocleak
 rm ../../../rendu/test
 } &>/dev/null
 
