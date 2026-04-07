@@ -2,10 +2,19 @@
 
 std::string current_path(void)
 {
-    std::string current_path = getcwd(NULL, 0);
-    if (current_path.find(getenv("HOME")) != std::string::npos)
-        current_path.replace(current_path.find(getenv("HOME")), std::string(getenv("HOME")).length(), "~");
-    return (current_path);
+    char *cwd = getcwd(NULL, 0);
+    if (cwd == NULL)
+        return (".");
+    std::string path(cwd);
+    free(cwd);
+    const char *home = getenv("HOME");
+    if (home != NULL)
+    {
+        std::string home_str(home);
+        if (path.find(home_str) != std::string::npos)
+            path.replace(path.find(home_str), home_str.length(), "~");
+    }
+    return (path);
 }
 
 std::string time_in_string(time_t rawtime)
@@ -13,7 +22,6 @@ std::string time_in_string(time_t rawtime)
     struct tm *timeinfo;
     char buffer[80];
 
-    time(&rawtime);
     timeinfo = localtime(&rawtime);
 
     strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H:%M:%S", timeinfo);
@@ -38,7 +46,7 @@ std::string remaining_time(time_t end_time)
 
 std::string lastupdate(time_t end_time)
 {
-    time_t now = 1662477376;
+    time_t now = time(NULL);
     time_t remaining_time = end_time - now;
     int day = remaining_time / 86400;
     int hours = (remaining_time % 86400) / 3600;
@@ -71,6 +79,12 @@ void sigc(int sig)
     {
         std::cout << WHITE << BOLD << std::endl
                   << "Exit exam..." << std::endl;
+        exit(0);
+    }
+    if (sig == SIGTERM)
+    {
+        std::cout << std::endl
+                  << "Exit exam (SIGTERM)..." << std::endl;
         exit(0);
     }
 }

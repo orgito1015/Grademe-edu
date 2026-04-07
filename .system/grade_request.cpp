@@ -54,7 +54,7 @@ void exam::success_ex(bool force)
 void exam::end_exam()
 {
     std::string tmp;
-    remove(".system/exam_token/actuel_token.txt");
+    remove(".system/exam_token/current_token.txt");
     if (using_cheatcode == 0)
     {
         if (student)
@@ -62,7 +62,10 @@ void exam::end_exam()
         else
             tmp = "bash .system/data_sender.sh \"exam_success_end: examweek0" + std::to_string(exam_number) + "\"";
         system(tmp.c_str());
-        std::cout << WHITE << BOLD << "🥳 Congratulation! You have finished the Exam Rank 0" << exam_number << " !" << std::endl;
+        if (student)
+            std::cout << WHITE << BOLD << "🥳 Congratulation! You have finished the Exam Rank 0" << exam_number << " !" << std::endl;
+        else
+            std::cout << WHITE << BOLD << "🥳 Congratulation! You have finished the Exam Week 0" << exam_number << " !" << std::endl;
     }
     else
     {
@@ -173,13 +176,12 @@ void exam::grade_request(bool i)
     {
         std::cout << std::endl
                   << "We will now wait for the job to complete." << std::endl
-                  << "Please be " << LIME << "patient" << RESET << ", this " << LIME << "CAN" << RESET " take several minutes..." << std::endl;
+                  << "Please be " << LIME << "patient" << RESET << ", this " << LIME << "CAN" << RESET << " take several minutes..." << std::endl;
         std::cout << "(10 seconds is fast, 30 seconds is expected, 3 minutes is a maximum)" << std::endl;
         srand(time(NULL));
         int waiting_seconds = rand() % 5 + 1;
-        for (int i = 0; i < waiting_seconds; i++)
+        for (int j = 0; j < waiting_seconds; j++)
         {
-            srand(time(NULL));
             double random = rand() % 6500000 + 250000;
             std::cout << "waiting..." << std::endl;
             usleep(random);
