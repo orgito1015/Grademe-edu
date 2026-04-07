@@ -63,6 +63,7 @@ fi
 DIFF=$(diff sourcexam finalexam)
 if [ "$DIFF" != "" ]
 then
+        touch traceback
         echo ""
         echo "----------------8<-------------[ START TEST ]"
         printf "        💻 TEST\n./a.out "
