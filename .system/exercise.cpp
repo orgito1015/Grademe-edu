@@ -81,7 +81,7 @@ bool exam::prepare_current_ex(void)
     cmd_system_call = "cp " + get_path() + "* .system/grading/ >/dev/null 2>&1";
     system(cmd_system_call.c_str());
 
-    return (false);
+    return (true);
 }
 
 // ==> Randomize exercise (give 1 into list)

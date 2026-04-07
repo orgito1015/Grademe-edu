@@ -61,6 +61,7 @@ DIFF=$(diff sourcexam finalexam)
 #if diff is not empty, then there is a difference, or if timeout is 1
 if [ "$DIFF" != "" ] || [ $timeout -eq 1 ]
 then
+        touch traceback
         echo ""
         echo "----------------8<-------------[ START TEST ]"
         printf "        💻 TEST\n./a.out "
