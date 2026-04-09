@@ -227,6 +227,11 @@ int exam::stud_or_swim(void)
                   << std::endl << std::endl;
 
         std::cout << LIME << BOLD << "            3" << RESET << std::endl;
+        std::cout << WHITE << BOLD << "    |" << RESET << BOLD << "  Python  PART  " << WHITE << BOLD << "|" << RESET << BOLD << std::endl
+                  << "     \\ ------------ /" << std::endl
+                  << std::endl << std::endl;
+
+        std::cout << LIME << BOLD << "            4" << RESET << std::endl;
         std::cout << WHITE << BOLD << "    |" << RESET << BOLD << "  SETTINGS PART " << WHITE << BOLD << "|" << RESET << BOLD << std::endl
                   << "     \\ ------------ /" << std::endl
                   << std::endl
@@ -241,12 +246,12 @@ int exam::stud_or_swim(void)
         // std::cin >> choice;
         if (!std::getline(std::cin, choice))
             sigd();
-        if (choice == "3")
+        if (choice == "4")
         {
             settings_menu();
             std::cin.ignore();
         }
-        else if (choice != "1" && choice != "2" )
+        else if (choice != "1" && choice != "2" && choice != "3")
             choice = "-1";
     }
     return (atoi(choice.c_str()));
@@ -392,6 +397,40 @@ int exam::piscine_menu(void)
         if (!std::getline(std::cin, choice))
             sigd();
         if (choice != "1" && choice != "2" && choice != "0")
+            choice = "-1";
+    }
+    return (atoi(choice.c_str()));
+}
+
+// ==> Display the menu for the python part
+int exam::python_menu(void)
+{
+    std::string choice = "-2";
+    while (choice == "-1" || choice == "-2")
+    {
+        system("clear");
+        std::cout << WHITE << BOLD << "         42EXAM " << std::endl
+                  << RED << "   BACK" << RESET << WHITE << BOLD << " to menu with " << RED << "0" << RESET << std::endl;
+        std::cout << LIME << BOLD << "            " << RESET << std::endl
+                  << std::endl
+                  << LIME << "            •           " << std::endl
+                  << WHITE << BOLD << "    |  Python  PART  |" << std::endl;
+        std::cout << std::endl
+                  << LIME << "            3" << RESET << WHITE << BOLD << std::endl
+                  << "   PYTHON RANK 03" << std::endl
+                  << "   Basic Algorithms" << std::endl;
+        std::cout << RESET << BOLD << std::endl
+                  << "     \\ ------------ /" << std::endl
+                  << std::endl
+                  << std::endl;
+        if (choice == "-1")
+            std::cout << BOLD << RED;
+        std::cout << std::endl;
+        std::cout << "    Enter your choice:" << RESET << std::endl
+                  << "            ";
+        if (!std::getline(std::cin, choice))
+            sigd();
+        if (choice != "3" && choice != "0")
             choice = "-1";
     }
     return (atoi(choice.c_str()));

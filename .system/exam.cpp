@@ -7,7 +7,9 @@ std::map<int, exercise> exam::list_dir(void)
     int i = 0;
     std::map<int, exercise> list;
     std::string path;
-    if (student)
+    if (python)
+        path = ".subjects/PYTHON_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/";
+    else if (student)
         path = ".subjects/STUD_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/";
     else
         path = ".subjects/PISCINE_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/";
@@ -38,7 +40,9 @@ std::string exam::get_path(void)
 {
     std::string path_exam;
 
-    if (student)
+    if (python)
+        path_exam = ".subjects/PYTHON_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/" + current_ex->get_name() + "/";
+    else if (student)
         path_exam = ".subjects/STUD_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/" + current_ex->get_name() + "/";
     else
         path_exam = ".subjects/PISCINE_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/" + current_ex->get_name() + "/";
@@ -114,7 +118,11 @@ void exam::display_exercise_description(void)
 // ==> Set max level for an exam
 void exam::set_max_lvl(void)
 {
-    if (student)
+    if (python)
+    {
+        level_max = 4;
+    }
+    else if (student)
     {
         if (exam_number == 2)
             level_max = 4;
@@ -136,7 +144,7 @@ void exam::set_max_lvl(void)
 // ==> Set max hrs for exam (3 or 4)
 void exam::set_max_time(void)
 {
-    if (student)
+    if (student || python)
         time_max = 180;
     else
     {
@@ -210,17 +218,27 @@ void exam::ask_param(void)
             if (select == 1)
             {
                 student = false;
+                python = false;
                 exam_number = piscine_menu();
             }
             else if (select == 2)
             {
                 student = true;
+                python = false;
                 exam_number = stud_menu();
+            }
+            else if (select == 3)
+            {
+                student = false;
+                python = true;
+                exam_number = python_menu();
             }
         }
         std::cout << REMOVE_LINE << REMOVE_LINE << REMOVE_LINE << std::endl;
         if (student)
             std::cout << LIME << BOLD << "       EXAM RANK 0" << exam_number << RESET << std::endl;
+        else if (python)
+            std::cout << LIME << BOLD << "       PYTHON RANK 0" << exam_number << RESET << std::endl;
         else
             std::cout << LIME << BOLD << "       EXAM WEEK 0" << exam_number << RESET << std::endl;
         std::cout << "   Confirm" << BOLD << WHITE << " Registration" << RESET << "?" << std::endl
@@ -248,7 +266,12 @@ void exam::ask_param(void)
     std::cout << "You're connected " << LIME << username << RESET << "!" << std::endl;
     std::cout << "You can log out at any time. If this program tells you you earned points,\nthen they will be counted whatever happens.\n"
               << std::endl;
-    std::cout << BOLD << WHITE << "You are about to start the project " << LIME << BOLD << "ExamRank0" << exam_number << BOLD << WHITE << ", in " << MAGENTA << "REAL" << BOLD << WHITE << " mode, at level " << YELLOW << level << BOLD << WHITE << "." << RESET << std::endl;
+    std::cout << BOLD << WHITE << "You are about to start the project " << LIME << BOLD;
+    if (python)
+        std::cout << "PythonRank0" << exam_number;
+    else
+        std::cout << "ExamRank0" << exam_number;
+    std::cout << BOLD << WHITE << ", in " << MAGENTA << "REAL" << BOLD << WHITE << " mode, at level " << YELLOW << level << BOLD << WHITE << "." << RESET << std::endl;
     std::cout << WHITE << BOLD << "You would have " << LIME << BOLD << (time_max / 60) << "hrs " << BOLD << WHITE << "to complete this project." << RESET << std::endl
               << "Press a key to start exam 🏁" << std::endl;
     if (!std::getline(std::cin, enter))
@@ -292,7 +315,7 @@ std::string generate_unique_id()
 }
 
 // CONSTRUCTOR/OPERATOR/GETTER/SETTER
-exam::exam(void) : exam_grade(0), level(0), level_max(0), failures(0), student(false), backup(false), using_cheatcode(0)
+exam::exam(void) : exam_grade(0), level(0), level_max(0), failures(0), student(false), python(false), backup(false), using_cheatcode(0)
 {
     reelmode = true;
     waiting_time = true;
@@ -313,6 +336,7 @@ exam &exam::operator=(exam const &src)
     this->level_max = src.level_max;
     this->failures = src.failures;
     this->student = src.student;
+    this->python = src.python;
     this->reelmode = src.reelmode;
     this->waiting_time = src.waiting_time;
     this->level_per_ex = src.level_per_ex;
@@ -332,6 +356,7 @@ exam::exam(exam const &src)
     this->level_max = src.level_max;
     this->failures = src.failures;
     this->student = src.student;
+    this->python = src.python;
     this->reelmode = src.reelmode;
     this->waiting_time = src.waiting_time;
     this->level_per_ex = src.level_per_ex;

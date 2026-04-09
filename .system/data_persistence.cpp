@@ -10,6 +10,7 @@ void exam::store_data()
     file << get_end_time() << std::endl;
     file << get_exam_number() << std::endl;
     file << student << std::endl;
+    file << python << std::endl;
     file << get_lvl() << std::endl;
     file << current_ex->get_assignement() << std::endl;
     file << current_ex->get_name() << std::endl;
@@ -38,6 +39,7 @@ void exam::restore_data(void)
         file >> backup.end_time;
         file >> backup.exam_number;
         file >> backup.student;
+        file >> backup.python;
         file >> backup.level;
         file >> assign;
         file >> name;
@@ -62,7 +64,9 @@ void exam::restore_data(void)
         std::cout << std::endl
                   << RED << BOLD << "       !!" << BOLD << WHITE << " BACKUP " << RED << BOLD << "!!" << std::endl
                   << std::endl;
-        if (backup.student)
+        if (backup.python)
+            std::cout << WHITE << BOLD << "        PYTHONRANK " << LIME << "0" << backup.exam_number << WHITE << std::endl;
+        else if (backup.student)
             std::cout << WHITE << BOLD << "        EXAMRANK " << LIME << "0" << backup.exam_number << WHITE << std::endl;
         else
             std::cout << WHITE << BOLD << "        EXAMWEEK " << LIME << "0" << backup.exam_number << WHITE << std::endl;
@@ -99,6 +103,7 @@ void exam::restore_data(void)
             this->end_time = backup.get_end_time();
             this->exam_number = backup.get_exam_number();
             this->student = backup.student;
+            this->python = backup.python;
             this->level = backup.get_lvl();
             this->current_ex = backup.current_ex;
             this->backup = backup.backup;

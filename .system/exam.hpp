@@ -88,6 +88,7 @@ public:
     std::map<int, exercise> lvl_ex;
     exercise *current_ex;
     bool student;
+    bool python;
     bool waiting_time;
     int level_max;
     bool changex;
@@ -104,6 +105,7 @@ private:
     void load_settings(void);
     void save_settings(void);
     int piscine_menu(void);
+    int python_menu(void);
     int stud_or_swim(void);
 
     bool setting_dse;
